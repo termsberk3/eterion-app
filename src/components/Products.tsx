@@ -9,27 +9,25 @@ import { searchProducts } from '../utils/search.util';
 import { useMemo } from 'react';
 
 
-
-
-interface ProductCardProps {
-    image?: string;
-    price?: number;
-    name?: string;
-    id?: number;
-}
-
+interface ProductItemProps {
+    image: string;
+    price: number;
+    name: string;
+    id: number;
+  }
+  
 const Products: FC = () => {
 
-    const [data, setData] = useState<ProductCardProps[]>([]);
+    const [data, setData] = useState<ProductItemProps[]>([]);
     const itemsPerPage = 12
 
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
             try {
-                const response = await axios.get<ProductCardProps[]>('https://5fc9346b2af77700165ae514.mockapi.io/products');
+                const response = await axios.get<ProductItemProps[]>('https://5fc9346b2af77700165ae514.mockapi.io/products');
                 setData(response.data);
-                console.log(response.data);
+                console.log('Product IDs:', data.map((item) => item.name));
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -56,8 +54,8 @@ const Products: FC = () => {
         <>
             <div>
                 <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {paginatedData.map((item: ProductCardProps) => (
-                        <ProductItems key={item.id} image={item.image} price={item.price} name={item.name} />
+                    {paginatedData.map((item) => (
+                        <ProductItems key={item.id} id={item.id} image={item.image} price={item.price} name={item.name} />
                     ))}
                 </div>
                 <PaginationControl

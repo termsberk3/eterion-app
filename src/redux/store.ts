@@ -11,7 +11,6 @@ export const store = configureStore({
     cart: cartSlice.reducer,
     sorting : sortingSlice.reducer,
     search : searchSlice.reducer
-
   },
 });
 
