@@ -34,15 +34,15 @@ const CartItem: React.FC<CartItemProps> = ({ name, price, quantity,id }) => {
             <div className="flex items-center">
                 <button
                     onClick={handleDecrease}
-                    className="bg-white hover:bg-gray-300 text-black font-bold py-2 px-4 rounded-l-md"
+                    className="bg-gray-100  text-black font-bold py-1 px-2 rounded-1-md"
                     disabled={quantity === 0}
                 >
                     -
                 </button>
-                <span className="px-4">{quantity}</span>
+                <span className="px-4 bg-blue-700 text-white">{quantity}</span>
                 <button
                     onClick={handleIncrease}
-                    className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-r-md"
+                    className="bg-gray-100 text-black font-bold py-1 px-2 rounded-1-md"
                 >
                     +
                 </button>
