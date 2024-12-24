@@ -1,14 +1,27 @@
 import React from 'react';
+import { useAppDispatch } from '../redux/store';
+import { cartActions } from '../redux/reducers/cart-slice';
 
 interface CartItemProps {
     name: string;
     price: number;
     quantity: number;
-    onIncrease?: () => void;
-    onDecrease?: () => void;
+    handleIncrease?: () => void;
+    handleDecrease?: () => void;
+    id: number;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ name, price, quantity, onIncrease, onDecrease }) => {
+
+const CartItem: React.FC<CartItemProps> = ({ name, price, quantity,id }) => {
+    const dispatch = useAppDispatch()
+
+    const handleIncrease = () => {
+        dispatch(cartActions.increaseItemQuantity(id));
+    };
+
+    const handleDecrease = () => {
+        dispatch(cartActions.decreaseItemQuantity(id));
+    };
     return (
         <div className="w-[213] h-[143] flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
             <div className="flex flex-col">
@@ -20,16 +33,16 @@ const CartItem: React.FC<CartItemProps> = ({ name, price, quantity, onIncrease, 
             </div>
             <div className="flex items-center">
                 <button
-                    onClick={onDecrease}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l-md"
+                    onClick={handleDecrease}
+                    className="bg-white hover:bg-gray-300 text-black font-bold py-2 px-4 rounded-l-md"
                     disabled={quantity === 0}
                 >
                     -
                 </button>
                 <span className="px-4">{quantity}</span>
                 <button
-                    onClick={onIncrease}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-md"
+                    onClick={handleIncrease}
+                    className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded-r-md"
                 >
                     +
                 </button>

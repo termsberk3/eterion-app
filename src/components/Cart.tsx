@@ -12,6 +12,7 @@ const Cart: React.FC = () => {
     <div className="w-[213] h-[143] flex flex-col justify-between items-center mb-4 border-b border-gray-200 pb-4">
       {items.map((item) => (
         <CartItem
+          id={item.id}
           key={item.id}
           name={item.name}
           price={item.totalPrice}
