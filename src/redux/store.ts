@@ -14,6 +14,12 @@ export const store = configureStore({
   },
 });
 
+store.subscribe(() => {
+  const state = store.getState().cart;
+  localStorage.setItem('cartItems', JSON.stringify(state.items));
+  localStorage.setItem('cartTotalQuantity', state.totalQuantity.toString());
+});
+
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
