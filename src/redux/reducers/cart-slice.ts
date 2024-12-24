@@ -14,15 +14,15 @@ interface CartState {
 }
 
 const initialState: CartState = {
-    items: [],
-    totalQuantity: 0,
+    items: JSON.parse(localStorage.getItem('cartItems') as string) || [],
+    totalQuantity: Number(localStorage.getItem('cartTotalQuantity')) || 0,
 };
 
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addItemToCart(state: CartState, action) {
+        addItemToCart(state, action) {
             const newItem = action.payload;
             const existingItem = state.items.find((item) => item.id === newItem.id);
             state.totalQuantity++;
@@ -38,9 +38,11 @@ const cartSlice = createSlice({
                 existingItem.quantity++;
                 existingItem.totalPrice = existingItem.price * existingItem.quantity;
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('cartTotalQuantity', state.totalQuantity.toString());
         },
-        removeItemFromCart(state: CartState, action) {
-            const id = Number(action.payload);
+        removeItemFromCart(state, action) {
+            const id = action.payload;
             const existingItem = state.items.find(item => item.id === id);
             state.totalQuantity--;
             if (existingItem && existingItem.quantity === 1) {
@@ -49,28 +51,31 @@ const cartSlice = createSlice({
                 existingItem.quantity--;
                 existingItem.totalPrice -= existingItem.price;
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('cartTotalQuantity', state.totalQuantity.toString());
         },
-        increaseItemQuantity(state: CartState, action) {
+        increaseItemQuantity(state, action) {
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
-
             if (existingItem) {
                 existingItem.quantity++;
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('cartTotalQuantity', state.totalQuantity.toString());
         },
-        decreaseItemQuantity(state: CartState, action) {
+        decreaseItemQuantity(state, action) {
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
-          
             if (existingItem) {
-              if (existingItem.quantity === 1) {
-                state.items = state.items.filter((item) => item.id !== id);
-              } else {
-                existingItem.quantity--;
-              }
+                if (existingItem.quantity === 1) {
+                    state.items = state.items.filter((item) => item.id !== id);
+                } else {
+                    existingItem.quantity--;
+                }
             }
-          },
-
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('cartTotalQuantity', state.totalQuantity.toString());
+        },
     },
 });
 
