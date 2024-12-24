@@ -13,7 +13,10 @@ const CartItem: React.FC<CartItemProps> = ({ name, price, quantity, onIncrease, 
         <div className="w-[213] h-[143] flex justify-between items-center mb-4 border-b border-gray-200 pb-4">
             <div className="flex flex-col">
                 <span className="text-base font-medium">{name}</span>
-                <span className="text-gray-500">{price}₺</span>
+                <span className="text-gray-500">{new Intl.NumberFormat('tr-TR', {
+                    style: 'currency',
+                    currency: 'TRY',
+                }).format(price)}</span>
             </div>
             <div className="flex items-center">
                 <button

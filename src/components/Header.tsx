@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import SearchBar from "./SearchBar"
 import { useAppDispatch } from '../redux/store';
 import { setSearchTerm } from '../redux/reducers/search-slice';
+import TotalPrice from './TotalCheckout';
 
 interface HeaderProps {
 
@@ -25,7 +26,7 @@ const Header: React.FC<HeaderProps> = () => {
                         </div>
                     </div>
                     <div className="flex items-center space-x-4 px-12">
-                        <p className="text-lg text-white font-montserrat">0.00 TL</p>
+                        <p className="text-lg text-white font-montserrat"><TotalPrice/>₺</p>
                         <p className="text-lg text-white font-montserrat">Berk</p>
                     </div>
                 </div>
