@@ -2,6 +2,8 @@ import React from 'react';
 import { cartActions } from '../redux/reducers/cart-slice';
 import { useAppDispatch } from '../redux/store';
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 
 interface ProductItemProps {
   image: string;
@@ -28,7 +30,7 @@ const ProductItems: React.FC<ProductItemProps> = ({ image, price, name, id }) =>
   return (
     <div className="w-[45] h-[75]">
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        {image && <img src={image} alt={name || ''} className="w-full h-48 object-cover" />}
+        {image && <LazyLoadImage  src={image} alt={name || ''} className="w-full h-48 object-cover" />}
         <div className="p-4">
           <p className="text-lg font-semibold">{price ? `${price} ₺` : 'N/A'}</p>
           <h3 className="text-base font-medium mt-2">{name}</h3>
