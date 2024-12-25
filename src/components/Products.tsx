@@ -27,7 +27,6 @@ const Products: FC = () => {
             try {
                 const response = await axios.get<ProductItemProps[]>('https://5fc9346b2af77700165ae514.mockapi.io/products');
                 setData(response.data);
-                console.log('Product IDs:', data.map((item) => item.name));
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

@@ -7,9 +7,9 @@ import TotalPrice from './TotalCheckout';
 
 const Cart: React.FC = () => {
   const { items } = useAppSelector((state) => state.cart);
-  
+
   return (
-    <div className="w-[213] h-[143] flex flex-col justify-between items-center mb-4 border-b border-gray-200 pb-4">
+    <div className="w-[250px] h-[150px] flex flex-col justify-between items-center mb-4  pb-4">
       {items.map((item) => (
         <CartItem
           id={item.id}

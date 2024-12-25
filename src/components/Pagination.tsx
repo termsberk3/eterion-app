@@ -38,7 +38,7 @@ const PaginationControl: React.FC<PaginationControlProps> = ({
                 <button
                     key={pageNumber}
                     onClick={() => setCurrentPage(pageNumber)}
-                    className={`p-2 rounded-md text-gray-400 hover:bg-gray-100 ${pageNumber === currentPage ? 'bg-white text-blue-500' : ''}`}
+                    className={`p-2 rounded-md ${pageNumber === currentPage ? 'bg-white text-blue-500 font-semibold' : 'text-gray-400 hover:bg-gray-100'}`}
                 >
                     {pageNumber}
                 </button>

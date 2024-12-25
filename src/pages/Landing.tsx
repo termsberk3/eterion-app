@@ -10,13 +10,13 @@ const Landing = () => {
         <>
             <Header/>
             <div className="flex justify-start">
-                <div className="w-[15%] p-4 ml-7">
+                <div className="w-[12%] p-4 ml-12">
                     <Filters />
                 </div>
-                <div className="w-[70%] p-4 ml-5">
+                <div className="w-[70%] p-4 ml-9">
                     <Products />
                 </div>
-                <div className="w-[15%] p-4">
+                <div className="w-[18%] p-4">
                     <Cart />
                 </div>
             </div>

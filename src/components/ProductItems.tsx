@@ -28,7 +28,7 @@ const ProductItems: React.FC<ProductItemProps> = ({ image, price, name, id }) =>
   };
 
   return (
-    <div className="w-[45] h-[75]">
+    <div className="w-[16rem] h-[75]">
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         {image && <LazyLoadImage  src={image} alt={name || ''} className="w-full h-48 object-cover" />}
         <div className="p-4">
